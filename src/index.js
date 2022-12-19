@@ -128,7 +128,43 @@ const fileManager = async () => {
         }
         break;
       }
-      
+      case "os": {
+        if (parameters.length === 1 && typeof parameters !== "undefined") {
+          if (parameters[0].startsWith("--")) {
+            await os(parameters);
+          } else {
+            process.stdout.write(`Invalid input\n`);
+          }
+        } else {
+          process.stdout.write(`Invalid input\n`);
+        }
+        break;
+      }
+      case "hash": {
+        if (parameters.length === 1) {
+          await hash(parameters).then((result) => {
+            process.stdout.write(result);
+          });
+        } else {
+          process.stdout.write(`Invalid input\n`);
+        }
+        break;
+      }
+      case "compress": {
+        if (parameters.length === 2) {
+          await compress(parameters);
+        } else {
+          process.stdout.write(`Invalid input\n`);
+        }
+        break;
+      }
+      case "decompress": {
+        if (parameters.length === 2) {
+        } else {
+          process.stdout.write(`Invalid input\n`);
+        }
+        break;
+      }
     }
     console.log(`You are currently in ${process.cwd()}`);
   });
